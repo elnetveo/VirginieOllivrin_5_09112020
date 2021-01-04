@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!--<script src="https://kit.fontawesome.com/63b7f701be.js" crossorigin="anonymous"></script>-->
+    <title>Orinoco - votre panier</title>
+</head>
+<body>
+    <header>
+        <a href="../index.html"><img class="logo" src="../img/15675819263013_image1.png" alt="logo Orinoco"></a>
+        
+        <nav>
+            <ul class="nav-home">
+                <li>Mon compte</li>
+                <li><a href="Frontend/pages/basket.html">Panier</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-basket">
+
+        <h2 class="main-title">Votre panier</h2>
+        <section id="basket-content">
+            <!--contenu Javascript-->
+        </section>
+        
+        <section class="container">
+            <h3 class="main-title">Remplissez le formulaire pour valider votre commande</h3>
+            <form id="command">
+                <input type="text" class="form-control" id="lastname" name="name" placeholder="Nom">
+                <input type="text" class="form-control" id="firstname" name="name" placeholder="Prénom">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                <input type="text" class="form-control" id="address" name="name" placeholder="Adresse">
+                <input type="text" class="form-control" id="city" name="name" placeholder="Ville">
+                <input type="submit" value="Envoyer" class="btn-send">
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <ul class="footer-home">
+            <li>Mentions légales</li>
+            <li>Nous contacter</li>
+        </ul>
+    </footer>
+
+<script src="../js/basket.js"></script>
+</body>
+</html>
