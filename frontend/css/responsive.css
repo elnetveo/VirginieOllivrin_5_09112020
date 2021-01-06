@@ -8,13 +8,12 @@
 
 /* Small devices (landscape phones, 576px) */
 @media (max-width: 576px) {
-    .nav-home {
-    display: flex;
-    flex-direction: column;
+    header {
+        flex-direction: column;
     }
 
     .single-product-cards {
-    width: 90%;
+        width: 90%;
     }
 }
 
