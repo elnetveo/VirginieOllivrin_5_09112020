@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* COMPONENTS */
 
-.btn-send {
+.btn-add, .btn-send {
     padding: 10px 20px 10px 20px;
     color: #ffffff;
     text-decoration: none;
@@ -46,11 +46,6 @@ header {
 .logo {
     width: 150px;
 }
-
-/* nav {
-    width: 30%;
-    border: 1px solid grey;
-} */
 
 .nav-home {
     display: flex;
@@ -123,9 +118,12 @@ footer {
     border-radius: 10px;
 }
 
-.photo {
+img {
     width: 100%;
-    background-color: #d3d3d3;
+}
+
+.photo-home-cards {
+    width: 100%;
     border-radius: 10px 10px 0 0;
 }
 
@@ -162,6 +160,42 @@ footer {
     flex-direction: column;
     align-items: center;
     text-align: center;
+}
+
+.single-product-cards {
+    display: flex;
+    width: 60%;
+    margin: 100px 0 100px 0;
+    padding: 20px;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.div-camera {
+    width: 50%;
+}
+
+.div-infos {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.div-infos .product-description {
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+.select {
+    width: 35%;
+    height: 25px;
+    margin: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    font-size: 1em;
 }
 
 /* PAGE BASKET */

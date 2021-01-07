@@ -9,7 +9,7 @@ function addNewCard(result) {
 
         let photoCamera = document.createElement("img");
         divCards.appendChild(photoCamera);
-        photoCamera.classList.add("photo");
+        photoCamera.classList.add("photo-home-cards");
         photoCamera.setAttribute("alt", "Image appareil photo");
         photoCamera.src = result[i].imageUrl;                   // Récup infos API 
 

@@ -1,19 +1,38 @@
 
-/* Medium devices (tablets, 768px) */
+/* Medium devices (tablets, 768px and up) */
 @media (max-width: 768px) {
     .single-product-cards {
-    width: 60%;
+        flex-direction: column;
+        width: 60%;
+    }
+
+    .div-infos {
+        width: 100%;
+        align-items: center;
+    }
+
+    .div-infos .product-description {
+        text-align: center;
+    }
+
+    .div-camera {
+        width: 100%;
     }
 }
 
-/* Small devices (landscape phones, 576px) */
+/* Small devices (landscape phones, 576px and up)*/
 @media (max-width: 576px) {
     header {
         flex-direction: column;
+        align-items: center;
     }
+    /*.nav-home {
+    display: flex;
+    flex-direction: column;
+    }*/
 
     .single-product-cards {
-        width: 90%;
+    width: 80%;
     }
 }
 
