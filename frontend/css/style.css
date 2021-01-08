@@ -15,15 +15,15 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* COLORS */
 
-/* color: #e68a08 orange*/
-/* color: #8f5bfe violet*/
-/* color: #261624 titre*/
-/* color: #f3e9f1 fond*/
+/* color: #e68a08 orange */
+/* color: #8f5bfe violet */
+/* color: #261624 titre */
+/* color: #f3e9f1 fond */
 /* color: #5f5f5f boutons */
 
 /* COMPONENTS */
 
-.btn-add, .btn-send {
+.btn-add, .btn-back, .btn-send, .btn-delete {
     padding: 10px 20px 10px 20px;
     color: #ffffff;
     text-decoration: none;
@@ -36,7 +36,6 @@ h1, h2, h3, h4, h5, h6, p {
 /* HEADER */
 
 header {
-    /*width: 100%;*/
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -49,8 +48,6 @@ header {
 
 .nav-home {
     display: flex;
-    /*flex-direction: column;*/
-    /*width: 100%;*/
     margin: auto;
     color: #261624;
     font-family: sans-serif;
@@ -59,7 +56,6 @@ header {
 }
 
 .nav-home li {
-    /*width: 20%;*/
     padding: 10px;
 }
 
@@ -75,17 +71,19 @@ header {
     padding: 20px;
 }
 
+img {
+    width: 100%;
+}
+
 /* FOOTER */
 
 footer {
-    /*width: 100%;*/
     height: 100px;
     display: flex;
     margin-top: 200px;
     justify-content: space-around;
     background-color: #808080;
 }
-
 
 .footer-home {
     width: 100%;
@@ -100,7 +98,6 @@ footer {
 /* PAGE HOME */
 
 #home-content {
-    /*width: 100%;*/
     margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
@@ -118,12 +115,7 @@ footer {
     border-radius: 10px;
 }
 
-img {
-    width: 100%;
-}
-
-.photo-home-cards {
-    width: 100%;
+.home-cards img {
     border-radius: 10px 10px 0 0;
 }
 
@@ -208,19 +200,44 @@ img {
 }
 
 #basket-content {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 50px;
     justify-content: center;
 }
 
-.container {
+.basket-cards {
+    width: 350px;
+    margin: 20px;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.basket-cards img {
+    border-radius: 10px 10px 0 0;
+}
+
+.subtotal {
+    padding: 10px;
+}
+
+.montant-total {
+    width: 100%;
+    padding: 20px;
+    margin: 20px 0 100px 0;
+    font-weight: bold;
+}
+
+.form {
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
     margin-top: 90px;
     background-color: #f3e9f1;
+}
+
+.form h3 {
+    padding-bottom: 20px;
 }
 
 #command {

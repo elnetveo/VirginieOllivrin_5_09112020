@@ -21,7 +21,6 @@ function getCamera(camera) {
 
     let photoCamera = document.createElement("img");
     divCamera.appendChild(photoCamera);
-    photoCamera.classList.add("photo-product-cards");
     photoCamera.setAttribute("alt", "Image appareil photo");
     photoCamera.src = camera.imageUrl;
 
