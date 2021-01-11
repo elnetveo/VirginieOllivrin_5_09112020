@@ -18,6 +18,14 @@
     .div-camera {
         width: 100%;
     }
+    #basket-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .basket-cards {
+        width: 60%;
+    }
 }
 
 /* Small devices (landscape phones, 576px and up)*/
@@ -26,11 +34,7 @@
         flex-direction: column;
         align-items: center;
     }
-    /*.nav-home {
-    display: flex;
-    flex-direction: column;
-    }*/
-
+    
     .single-product-cards {
     width: 80%;
     }

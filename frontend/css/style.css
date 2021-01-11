@@ -260,8 +260,9 @@ footer {
     display: flex;
     flex-direction: column;
     padding-top: 100px;
-    align-items: center;
     height: 700px;
+    align-items: center;
+    text-align: center;
 }
 
 .command-number {

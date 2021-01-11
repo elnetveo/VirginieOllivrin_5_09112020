@@ -1,114 +1,119 @@
 // Récupération des produits dans le localStorage
-
 let productsStorage = JSON.parse(localStorage.getItem("basketOrinoco"))
-console.log(productsStorage)
 
 let total = 0;
 
 //Tableau qui sera envoyé au serveur avec les infos des caméras
-let products = [];
+let productIds = [];
 
 // Structure html du panier d'après les produits choisis
-function createBasket() {
-    for (let i = 0; i < productsStorage.length; i++) {
-        console.log(productsStorage.length)
+let basketProducts = document.getElementById("basket-content");
+function createBasket(products, content) {
+    if (!products || products.length == 0) {
+        let intialBasket = document.createElement("h3");
+        content.appendChild(intialBasket);
+        intialBasket.classList.add("basket-start");
+        intialBasket.innerText = "Aucun article sélectionné";
+        return;
+    }
+    for (let i = 0; i < products.length; i++) {
+        console.log(products.length)
 
         let productsdiv = document.createElement("div");
-        let basketProducts = document.getElementById("basket-content");
-        basketProducts.appendChild(productsdiv);
+        content.appendChild(productsdiv);
         productsdiv.classList.add("basket-cards");
 
         let photoCamera = document.createElement("img");
         productsdiv.appendChild(photoCamera);
         photoCamera.setAttribute("alt", "Image appareil photo");
-        photoCamera.src = productsStorage[i].imageUrl;
+        photoCamera.src = products[i].imageUrl;
 
         let titleCamera = document.createElement("h3");
         productsdiv.appendChild(titleCamera);
         titleCamera.classList.add("product-name");
-        titleCamera.textContent = productsStorage[i].name;
+        titleCamera.textContent = products[i].name;
 
         let priceCamera = document.createElement("p");
         productsdiv.appendChild(priceCamera);
         priceCamera.classList.add("product-price");
-        priceCamera.innerText = productsStorage[i].price / 100 + "€";
+        priceCamera.innerText = products[i].price / 100 + "€";
 
         let numberProducts = document.createElement("div");
         productsdiv.appendChild(numberProducts);
         numberProducts.classList.add("product-price");
-        numberProducts.innerText = "Quantité : " + productsStorage[i].quantity;
+        numberProducts.innerText = "Quantité : " + products[i].quantity;
 
-        let subTotal = (productsStorage[i].price / 100 * productsStorage[i].quantity);
+        let subTotal = (products[i].price / 100 * products[i].quantity);
         total += subTotal //
         let totalPrice = document.createElement("div");
         totalPrice.classList.add("subtotal");
         productsdiv.appendChild(totalPrice);
         totalPrice.innerText = "Sous-total : " + subTotal + "€";
 
-        // Récupération des id produits dans le tableau products
-        products.push(productsStorage[i]._id)
+        // Récupération des ids produits dans le tableau products
+        productIds.push(products[i]._id)
         //console.log(products)
     }
+        // Affichage du montant total de la commande
+        let contentPrice = document.createElement("div")
+        content.appendChild(contentPrice);
+        contentPrice.classList.add("montant-total");
+        contentPrice.innerText = "TOTAL DE VOTRE COMMANDE : " + total + "€";
+
+        // Suppression des articles du panier
+        function clearBasket (content) {
+            let deleteBasket = document.createElement("button");
+            content.appendChild(deleteBasket);
+            deleteBasket.classList.add("btn-delete");
+            deleteBasket.innerText = "Vider le panier";
+            
+                deleteBasket.addEventListener("click", function () {
+                    localStorage.removeItem("basketOrinoco");
+                    location.reload();
+                });
+        }
+        clearBasket(basketProducts);
 }
-createBasket();
-
-// Affichage du montant total de la commande
-let contentPrice = document.createElement("div")
-let content = document.getElementById("basket-content");
-content.appendChild(contentPrice);
-contentPrice.classList.add("montant-total");
-contentPrice.innerText = "TOTAL DE VOTRE COMMANDE : " + total + "€";
-
-// Suppression des articles du panier
-let deleteBasket = document.createElement("button");
-content.appendChild(deleteBasket);
-deleteBasket.classList.add("btn-delete");
-deleteBasket.innerText = "Vider le panier";
-
-deleteBasket.addEventListener("click", function () {
-    localStorage.removeItem("basketOrinoco");
-    location.reload();
-});
-
-// Stockage données utilisateur dans un constructor
-class userInfos {
-    constructor(lastname, firstname, email, address, city) {
-        this.lastName = lastname,
-            this.firstName = firstname,
-            this.email = email,
-            this.address = address,
-            this.city = city
-    }
-}
-console.log(userInfos)
+createBasket(productsStorage, basketProducts);
 
 // Vérification des données du formulaire
-document.getElementById("command").addEventListener("submit", function (e) {
+function checkUserInfos () {
     let lastname = document.getElementById("lastname");
     let firstname = document.getElementById("firstname");
     let email = document.getElementById("email");
     let address = document.getElementById("address");
     let city = document.getElementById("city");
 
-    if (!lastname.value) {
+    if (lastname.value.trim().length<1) {
         alert("Veuillez renseigner votre nom");
+        return false;
     }
-    if (!firstname.value) {
+    if (firstname.value.trim().length<1) {
         alert("Veuillez renseigner votre prénom");
+        return false;
     }
-    if (!email.value) {
+    if (!/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/.test(email.value)) {
         alert("Veuillez renseigner votre email");
+        return false;
     }
-    if (!address.value) {
+    //console.log(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/.test(email.value))
+    if (address.value.trim().length<1) {
         alert("Veuillez renseigner votre adresse");
+        return false;
     }
-    if (!city.value) {
+    if (city.value.trim().length<1) {
         alert("Veuillez renseigner votre ville");
-    } else {
-        e.preventDefault();
-        //return false;
+        return false;
     }
+    sendUserInfos(firstname, lastname, address, city, email)
+}
 
+document.getElementById("command").addEventListener("submit", function (e) {
+    e.preventDefault()
+    checkUserInfos()
+})
+
+function sendUserInfos (firstname, lastname, address, city, email) {
     // Récupération des données utilisateur dans l'objet contact
     let contact = {
         firstName: firstname.value,
@@ -117,9 +122,9 @@ document.getElementById("command").addEventListener("submit", function (e) {
         city: city.value,
         email: email.value,
     };
-
+    
     // Requête POST pour envoyer les données à l'API
-    const infos = { contact, products };
+    const infos = { contact:contact, products:productIds };
 
     const reqType = {
         method: "POST",
@@ -134,8 +139,12 @@ document.getElementById("command").addEventListener("submit", function (e) {
 
         .then(function (response) {
             response.json().then(function (result) {
-                localStorage.clear();
+                localStorage.removeItem("basketOrinoco");
                 window.location.href = `confirm.html?orderId=${result.orderId}`
+                console.log(result)
             });
         })
-});
+        .catch(function(error) {
+            console.log(error)
+        })
+}

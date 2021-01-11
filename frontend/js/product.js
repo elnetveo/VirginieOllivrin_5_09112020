@@ -87,14 +87,20 @@ function getCamera(camera) {
     });
 }
 
-fetch(`http://localhost:3000/api/cameras/${productId}`)
-.then(function (response) {
-    response.json()
-    .then(function (result) {
-        console.log(result)
-        getCamera(result)
-    });
-})
+function getInfosCamera() {
+    fetch(`http://localhost:3000/api/cameras/${productId}`)
+    .then(function (response) {
+        response.json()
+        .then(function (result) {
+            console.log(result)
+            getCamera(result)
+        });
+    })
+    .catch(function(error) {
+        console.log(error)
+    })
+}
+getInfosCamera()
 
 // Ajout des éléments du panier dans le localStorage
 function addCamera(camera, quantitySelect) {                   // On réutilise la fonction addCamera que l'on renomme
