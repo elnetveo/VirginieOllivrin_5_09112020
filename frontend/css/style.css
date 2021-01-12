@@ -68,7 +68,7 @@ header {
 
 .main-title {
     width: 100%;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 img {
@@ -223,7 +223,7 @@ footer {
 
 .montant-total {
     width: 100%;
-    padding: 20px;
+    padding: 20px 0;
     margin: 20px 0 100px 0;
     font-weight: bold;
 }

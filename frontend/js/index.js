@@ -2,17 +2,18 @@
 function addNewCard(result) {
   // Boucle pour ajouter des cards tant qu'il y a des articles
   for (let i = 0; i < result.length; i++) {
-    let divCards = document.createElement("div");           // création de l'élément div
-    let content = document.getElementById("home-content");  // récup id parent des nouveaux éléments
-    content.appendChild(divCards);                          // ajout du nouvel élément en tant qu'enfant
-    divCards.classList.add("home-cards");                   // ajout de la classe
+    //console.log(result.length)
+    let divCards = document.createElement("div");
+    let content = document.getElementById("home-content");  
+    content.appendChild(divCards);                          
+    divCards.classList.add("home-cards");                   
     //console.log(divCards)
     //console.log(content)
 
     let photoCamera = document.createElement("img");
     divCards.appendChild(photoCamera);
     photoCamera.setAttribute("alt", "Image appareil photo");
-    photoCamera.src = result[i].imageUrl;                   // Récup infos API
+    photoCamera.src = result[i].imageUrl;
     //console.log(result[i].imageUrl)
 
     let titleCamera = document.createElement("h3");
@@ -34,7 +35,8 @@ function addNewCard(result) {
     divCards.appendChild(linkProduct);
     linkProduct.classList.add("product-link");
     linkProduct.innerText = "voir plus";
-    linkProduct.href = `pages/product.html?productId=${result[i]._id}`; // récup infos produit vers la page product.html
+    // récup infos produit vers la page product.html
+    linkProduct.href = `pages/product.html?productId=${result[i]._id}`;
   }
 }
 
@@ -45,7 +47,7 @@ function getInfosProducts() {
             //console.log(response)
             response.json()
               .then(function (result) {
-                console.log(result)
+                //console.log(result)
                 addNewCard(result) // Exécution de la fonction
             })
         })

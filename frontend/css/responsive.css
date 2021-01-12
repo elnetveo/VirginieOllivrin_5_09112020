@@ -26,6 +26,10 @@
     .basket-cards {
         width: 60%;
     }
+
+    .form-control {
+        width: 50%;
+    }
 }
 
 /* Small devices (landscape phones, 576px and up)*/

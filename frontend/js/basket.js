@@ -61,7 +61,7 @@ function createBasket(products, content) {
         contentPrice.innerText = "TOTAL DE VOTRE COMMANDE : " + total + "€";
 
         // Suppression des articles du panier
-        function clearBasket (content) {
+        function createClearButtonBasket (content) {
             let deleteBasket = document.createElement("button");
             content.appendChild(deleteBasket);
             deleteBasket.classList.add("btn-delete");
@@ -72,9 +72,11 @@ function createBasket(products, content) {
                     location.reload();
                 });
         }
-        clearBasket(basketProducts);
+        createClearButtonBasket(basketProducts);
+        console.log(products)
 }
 createBasket(productsStorage, basketProducts);
+// console.log(productsStorage)
 
 // Vérification des données du formulaire
 function checkUserInfos () {
@@ -93,7 +95,7 @@ function checkUserInfos () {
         return false;
     }
     if (!/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/.test(email.value)) {
-        alert("Veuillez renseigner votre email");
+        alert("Veuillez renseigner une adresse email valide");
         return false;
     }
     //console.log(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/.test(email.value))
@@ -123,9 +125,9 @@ function sendUserInfos (firstname, lastname, address, city, email) {
         email: email.value,
     };
     
-    // Requête POST pour envoyer les données à l'API
     const infos = { contact:contact, products:productIds };
-
+    
+    // Requête POST pour envoyer les données à l'API
     const reqType = {
         method: "POST",
         headers: {

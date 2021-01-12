@@ -1,5 +1,5 @@
 let linkPage = location.href;                           // récup url
-console.log(linkPage);
+//console.log(linkPage);
 
 const url = new URL(linkPage);                          // stockage nouvelle url
 console.log(url);
@@ -48,6 +48,7 @@ function getCamera(camera) {
     selectLense.id = "choices";
 
     for (let i = 0; i < camera.lenses.length; i++) {
+        //console.log(camera.lenses.length)
         let typeOfLens = document.createElement("option");
         selectLense.appendChild(typeOfLens);
         typeOfLens.innerText = camera.lenses[i];
@@ -82,8 +83,9 @@ function getCamera(camera) {
     addButton.addEventListener("click", function () {
         let choiceLens = document.getElementById("choices").value;
         console.log(choiceLens);
-        addCamera(camera, selectQuantity)         // fonction qui se déclare au moment du clic
+        addCamera(camera, selectQuantity)
         alert("ajouté au panier")
+        // console.log(selectQuantity.value)
     });
 }
 
@@ -103,10 +105,10 @@ function getInfosCamera() {
 getInfosCamera()
 
 // Ajout des éléments du panier dans le localStorage
-function addCamera(camera, quantitySelect) {                   // On réutilise la fonction addCamera que l'on renomme
+function addCamera(camera, quantitySelect) {
     let basket = localStorage.getItem("basketOrinoco")
     if (basket == null) {
-        basket = []                                            // tableau vide qu'on initialise
+        basket = []                                            
     } else {
         basket = JSON.parse(basket)
     }
@@ -117,10 +119,10 @@ function addCamera(camera, quantitySelect) {                   // On réutilise 
         price: camera.price,
         quantity: quantitySelect.value
     }
+
     basket.push(cameraBasket)
-    // remettre le tableau mis à jour dans le local storage
+    
     const stringifybasket = JSON.stringify(basket)
     //console.log(camera);
-    // On ajoute à l'emplacement de stockage
     localStorage.setItem("basketOrinoco", stringifybasket)
 }        
